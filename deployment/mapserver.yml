@@ -1,3 +1,5 @@
+- include: baseserver.yml
+
 - hosts: mapservers
   gather_facts: False
   user: vagrant
@@ -32,3 +34,6 @@
         - TileStache
         - redis
         - gunicorn
+
+  handlers:
+    - include: handlers.yml

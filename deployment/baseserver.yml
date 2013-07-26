@@ -1,0 +1,21 @@
+- hosts: all
+  gather_facts: False
+  user: vagrant
+  sudo: True
+  vars:
+    locale: en_US.UTF-8
+    timezone: Europe/Amsterdam
+
+  tasks:
+    - name: set locale to $locale
+      command: /usr/sbin/update-locale LANG=$locale LC_ALL=$locale
+
+    - name: set /etc/localtime to $timezone
+      command: /bin/cp /usr/share/zoneinfo/$timezone /etc/localtime
+
+    - name: set /etc/timezone to $timezone
+      template: src=templates/etc/timezone dest=/etc/timezone
+      notify: update tzdata
+  
+  handlers:
+    - include: handlers.yml

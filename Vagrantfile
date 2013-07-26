@@ -1,6 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require 'vagrant-ansible'
+
 Vagrant::Config.run do |config|
   # All Vagrant configuration is done here. The most common configuration
   # options are documented and commented below. For a complete reference,
@@ -96,4 +98,10 @@ Vagrant::Config.run do |config|
   # chef-validator, unless you changed the configuration.
   #
   #   chef.validation_client_name = "ORGNAME-validator"
+  
+  # Enable provisioning with ansible
+  config.vm.provision :ansible do |ansible|
+    ansible.playbook = "deployment/mapserver.yml"
+    ansible.hosts = "mapservers"
+  end
 end
