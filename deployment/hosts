@@ -3,10 +3,13 @@ production
 staging
 development
 
-[servers:children]
+[baseservers:children]
 production
 staging
 development
+local
+
+[mapservers:children]
 local
 
 [production]
@@ -19,4 +22,4 @@ staging.nens.external nickname=stagin vm=0 branch=master
 dev.nens.external nickname=dev vm=0 branch=develop
 
 [local]
-local.nens.external nickname=local vm=1 branch=develop
+192.168.33.10 nickname=local vm=1 branch=develop

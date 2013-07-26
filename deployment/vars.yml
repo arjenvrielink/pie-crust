@@ -1,0 +1,4 @@
+---
+project_name: lemon-pie
+project_root: /var/www/lemon-pie
+project_repo: git@github.com:arjenvrielink/tilestache-server.git

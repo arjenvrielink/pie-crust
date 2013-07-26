@@ -1,0 +1,34 @@
+- hosts: mapservers
+  gather_facts: False
+  user: vagrant
+  sudo: True
+
+  tasks:
+    - name: install python-software-properties
+      action: apt pkg=python-software-properties state=present
+
+    - name: add developmentseed mapnik ppa
+      action: apt_repository repo=ppa:developmentseed/mapbox state=present
+
+    - name: install mapserver packages
+      action: apt pkg=$item state=installed update-cache=yes
+      with_items:
+        - build-essential
+        - git-core
+        - nginx
+        - redis-server
+        - python-dev
+        - python-setuptools
+        - libmapnik
+        - python-mapnik
+
+    - name: install pip
+      action: easy_install name=pip
+
+    - name: install python libs with pip
+      action: pip name=$item state=present
+      with_items:
+        - virtualenvwrapper
+        - TileStache
+        - redis
+        - gunicorn
