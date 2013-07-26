@@ -1,0 +1,22 @@
+[remote:children]
+production
+staging
+development
+
+[servers:children]
+production
+staging
+development
+local
+
+[production]
+prod.nens.external nickname=prod vm=0 branch=master
+
+[staging]
+staging.nens.external nickname=stagin vm=0 branch=master
+
+[development]
+dev.nens.external nickname=dev vm=0 branch=develop
+
+[local]
+local.nens.external nickname=local vm=1 branch=develop
