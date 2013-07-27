@@ -7,13 +7,16 @@
     timezone: Europe/Amsterdam
 
   tasks:
-    - name: set locale to $locale
+    - name: Update & upgrade of system
+      action: apt update_cache=yes upgrade=yes
+    
+    - name: Set locale to $locale
       command: /usr/sbin/update-locale LANG=$locale LC_ALL=$locale
 
-    - name: set /etc/localtime to $timezone
+    - name: Set /etc/localtime to $timezone
       command: /bin/cp /usr/share/zoneinfo/$timezone /etc/localtime
 
-    - name: set /etc/timezone to $timezone
+    - name: Set /etc/timezone to $timezone
       template: src=templates/etc/timezone dest=/etc/timezone
       notify: update tzdata
   
