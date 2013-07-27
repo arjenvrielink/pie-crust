@@ -13,7 +13,7 @@
       action: apt_repository repo=ppa:developmentseed/mapbox state=present
 
     - name: install mapserver packages
-      action: apt pkg=$item state=installed update-cache=yes
+      action: apt pkg=$item state=installed update_cache=yes
       with_items:
         - build-essential
         - git-core
